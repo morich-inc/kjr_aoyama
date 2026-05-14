@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>青山敬次郎 様｜morich キャリアご提案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E60012;
+    --red-light: #fff0f0;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-900: #111827;
+    --blue-50: #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-600: #2563eb;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f5f5; color: var(--gray-900); line-height: 1.75; }
+  header { background: #fff; border-bottom: 3px solid var(--red); padding: 14px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  header img { height: 38px; }
+  header .htxt p:first-child { font-size: 12px; color: var(--gray-500); }
+  header .htxt p:last-child { font-size: 17px; font-weight: 900; }
+  .nav-bar { background: var(--gray-900); padding: 0 12px; overflow-x: auto; white-space: nowrap; }
+  .nav-bar a { display: inline-block; padding: 13px 18px; color: #ccc; text-decoration: none; font-size: 12px; font-weight: 700; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .nav-bar a:hover { color: #fff; border-bottom-color: var(--red); }
+  main { max-width: 860px; margin: 0 auto; padding: 28px 14px 64px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 40px; overflow: hidden; border-top: 5px solid var(--red); }
+  .card-inner { padding: 28px 28px 36px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 14px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; border: 2px solid var(--red); color: var(--red); background: var(--red-light); }
+  .badge-blue { border-color: var(--blue-600); color: var(--blue-600); background: var(--blue-50); }
+  .co-name { font-size: clamp(22px, 5vw, 34px); font-weight: 900; line-height: 1.2; margin-bottom: 5px; }
+  .co-url { font-size: 12px; margin-bottom: 22px; }
+  .co-url a { color: var(--blue-600); text-decoration: none; }
+  .co-url a:hover { text-decoration: underline; }
+  .overview { background: var(--blue-50); border: 1px solid var(--blue-100); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .overview h3 { font-size: 10px; font-weight: 700; color: var(--blue-600); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+  .overview table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .overview tr { border-bottom: 1px solid var(--blue-100); }
+  .overview tr:last-child { border-bottom: none; }
+  .overview th { text-align: left; padding: 6px 14px 6px 0; color: var(--gray-600); font-weight: 700; width: 100px; vertical-align: top; white-space: nowrap; }
+  .overview td { padding: 6px 0; color: var(--gray-700); }
+  .highlight { background: var(--red-light); border: 2px solid var(--red); border-radius: 8px; padding: 16px 20px; margin-bottom: 22px; }
+  .highlight h3 { font-size: 13px; font-weight: 900; color: var(--red); margin-bottom: 8px; }
+  .highlight p, .highlight li { font-size: 13px; color: #7a0000; margin-bottom: 4px; }
+  .highlight ul { padding-left: 16px; }
+  .accordion { margin-bottom: 16px; }
+  .acc-header { display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; padding: 12px 16px; background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; user-select: none; transition: background 0.15s; }
+  .acc-header:hover { background: var(--gray-100); }
+  .acc-header .label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--red); border-left: 3px solid var(--red); padding-left: 8px; margin-bottom: 5px; display: block; }
+  .acc-preview { font-size: 12px; color: var(--gray-500); line-height: 1.6; }
+  .acc-header-left { flex: 1; }
+  .acc-icon { width: 28px; height: 28px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--gray-200); font-size: 13px; transition: transform 0.25s, background 0.2s; }
+  .acc-header.open .acc-icon { transform: rotate(180deg); background: var(--red); color: #fff; }
+  .acc-header.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+  .acc-body { display: none; padding: 20px 18px; border: 1px solid var(--gray-200); border-top: none; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .acc-body.open { display: block; }
+  .acc-body p { margin-bottom: 10px; }
+  .acc-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .acc-body li { margin-bottom: 6px; }
+  .job-wrap { border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
+  .job-header { background: var(--gray-900); color: #fff; padding: 14px 18px; display: flex; align-items: flex-start; justify-content: space-between; cursor: pointer; user-select: none; }
+  .job-title-text { font-size: 14px; font-weight: 900; margin-bottom: 3px; }
+  .job-preview { font-size: 11px; color: #aaa; line-height: 1.5; }
+  .job-icon { width: 26px; height: 26px; flex-shrink: 0; margin-left: 12px; margin-top: 2px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.15); font-size: 12px; transition: transform 0.25s; }
+  .job-header.open .job-icon { transform: rotate(180deg); }
+  .job-body { display: none; padding: 20px 18px; font-size: 13px; color: var(--gray-700); line-height: 1.85; }
+  .job-body.open { display: block; }
+  .job-body p { margin-bottom: 10px; }
+  .job-body ul { padding-left: 18px; margin-bottom: 10px; }
+  .job-body li { margin-bottom: 6px; }
+  .job-section { font-size: 11px; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: .06em; margin: 14px 0 6px; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 5px; margin-bottom: 8px; }
+  .tag-must { background: var(--red); color: #fff; }
+  .tag-want { background: var(--gray-600); color: #fff; }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+  .pill { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+  .section-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: .08em; border-left: 3px solid var(--red); padding-left: 8px; margin: 22px 0 10px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .lbtn { display: inline-flex; align-items: center; gap: 5px; padding: 7px 14px; border-radius: 6px; background: var(--gray-900); color: #fff; font-size: 12px; font-weight: 700; text-decoration: none; transition: background 0.2s; }
+  .lbtn:hover { background: var(--red); }
+  .lbtn-out { background: transparent; color: var(--gray-900); border: 2px solid var(--gray-200); }
+  .lbtn-out:hover { background: var(--gray-900); color: #fff; border-color: var(--gray-900); }
+  footer { text-align: center; padding: 28px 16px; font-size: 11px; color: var(--gray-500); border-top: 1px solid var(--gray-200); background: #fff; }
+  @media(max-width:600px){ .card-inner{ padding: 18px 14px 24px; } .overview th { width: 80px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="morich_logo.jpg" alt="morich">
+  <div class="htxt">
+    <p>morich キャリアご提案資料</p>
+    <p>青山敬次郎 様</p>
+  </div>
+</header>
+<nav class="nav-bar">
+  <a href="#shift-ai">1. 株式会社SHIFT AI</a>
+  <a href="#caddi">2. キャディ株式会社</a>
+  <a href="#ubie">3. Ubie株式会社</a>
+  <a href="#asuene">4. アスエネ株式会社</a>
+  <a href="#hupro">5. 株式会社ヒュープロ</a>
+</nav>
+<main>
+
+<div class="card" id="shift-ai"><div class="card-inner">
+  <div class="badges"><span class="badge">人事部長(Head of HR)</span><span class="badge badge-blue">未上場(N-2)</span></div>
+  <div class="co-name">株式会社SHIFT AI</div>
+  <div class="co-url"><a href="https://shift-ai.co.jp/company/" target="_blank">https://shift-ai.co.jp/company/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒150-0002 東京都渋谷区渋谷2丁目24-12 渋谷スクランブルスクエア</td></tr><tr><th>設立</th><td>2022年3月</td></tr><tr><th>上場区分</th><td>未上場(N-2)</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li>AIの活用率は中国56.3%・米国46.3%に対し、日本は9%と大幅に遅れをとっている現状がありSHIFTAIのサービス拡大を通じて、年間100万人のAI人材を生み出す日本トップのAI人材育成企業を目指しています</li><li>大手エンタープライズ企業から、従業員30名くらいの地方企業まで、延べ2500社ほどの生成AI支援の実績があります</li><li>フルリモート・フルフレックス体制で、時間や場所に縛られない働き方ができ、平均年齢も36歳と子育て世代も多いカルチャーです</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「日本をAI先進国に」というビジョンのもと、AI関連のメディア事業・コミュニティ事業・法人事業の三本柱で事業を展開。生成AIをはじめとするAI技術のビジネス活用を学べる国内最大級のコミュニティ「SHIFT AI」を運営。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>株式会社SHIFT AIは、2022年3月に設立された企業で、&quot;日本をAI先進国に&quot;というビジョンのもと、AI関連のメディア事業・コミュニティ事業・法人事業の三本柱で事業を展開しています。</p><p>生成AIをはじめとするAI技術のビジネス活用を学べる国内最大級のコミュニティ「SHIFT AI」を運営しており、会員数はすでに2万人を超えています。個人向けだけでなく、法人向けのリスキリング支援サービス「SHIFT AI for Biz」や、教育機関向けの「SHIFT AI for School」なども展開し、幅広い分野でAI人材の育成を推進しています。</p><p>また、最新のAIトレンドやツール情報を発信するメディア「SHIFT AI TIMES」を運営し、X(旧Twitter)では約10万人のフォロワーを有するほか、TikTokやYouTube、Instagramなど複数のSNSでも情報発信を行っています。</p><p>法人事業では、企業向けに生成AI活用の研修から導入推進までを包括的に支援しており、これまでに2,500社以上の企業をサポート。法人向け研修事業は月次300％成長を継続するなど、急拡大フェーズにあります。</p><p><strong>代表取締役　木内 翔大氏</strong><br>1990年東京都生まれ。大学時代からフリーランスエンジニアとして活動し、2013年には日本初のマンツーマン専門プログラミングスクール「SAMURAI ENGINEER」を創業。累計4万人以上を指導した後、2022年に株式会社SHIFT AIを立ち上げ、&quot;日本をAI先進国に&quot;という理念のもと、AIのビジネス活用を広げる取り組みをリードされています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 人事部長(Head of HR)</div>
+          <div class="job-preview">経営陣・CHRO直下で、SHIFT AI全社の人事戦略および人事機能全体の最終責任を担うポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■ SHIFT AIについて</strong></p><p>私たちSHIFT AIは&quot;日本をAI先進国に&quot;をミッションに、AIのビジネス活用を推進するインフラづくりに取り組んでいます。2022年3月の創業以来、メディア・コミュニティ・法人事業の3つの軸を通じてAI人材の育成と企業のAI活用支援を展開してきました。現在、AIの活用率は中国81%・米国69%に対し、日本はわずか27%にとどまっており(総務省・2025年情報通信白書)、この格差を埋めることが急務です。</p><p>今後は&quot;AI人材×AI生産性&quot;がGDPに直結する時代が到来します。私たちはその最前線に立ち、2030年までに日本をAI先進国にすることを目指しています。</p><p>製造・メーカー・医療・地方自治体まで、業種を問わず企業向けにAI研修・導入支援を提供する法人事業、29,000人が学ぶ「AI大学 SHIFT AI」を中心としたコミュニティ事業、そしてSNS・YouTube・オウンドメディアでのコンテンツ発信から子ども向けAI教育まで、より多くの人がAIに触れるきっかけをつくるメディア事業と、3つの軸で社会全体へのAI普及を推進しています。</p><p>創業から3年で売上は10倍以上の成長を遂げました。生成AIの登場により、ビジネスの競争環境は根本から変わりつつあります。私たちがやれることはまだ無限にあり、これからも日本のAI推進の最前線で挑戦を続けていきます。</p><p><strong>【募集背景】</strong></p><p>事業拡大に伴い、採用・労務・制度設計を含む人事領域全体のマネジメント体制強化が急務となっています。現在は採用中心の体制で運用していますが、社員数・事業数の増加により、今後は人事制度の整備や労務体制の高度化、評価・報酬制度の内製化が求められています。本ポジションは、経営陣・CHRO直下で、SHIFT AI全社の人事戦略および人事機能全体の最終責任を担っていただきます。</p><p><strong>【業務内容】</strong></p><p>事業成長および上場準備を見据え、採用・労務・制度・組織開発を横断し、経営戦略と一体となった人事の意思決定・実行をリードしていただきます。単なる人事施策の推進ではなく、&quot;どのような組織・人材構成で事業を伸ばすか&quot;を経営陣と共に決定する役割を期待しています。</p><p><strong>＜具体的な業務＞</strong></p><ul><li>経営戦略に基づく経営戦略・事業計画に基づく、中長期の人員計画・人件費／採用予算の策定および最終意思決定</li><li>労務ガバナンスおよびリスクマネジメントの統括責任</li><li>全社組織課題の構造化および改善方針の策定(エンゲージメント・人材開発・オンボーディング等)</li><li>成長フェーズ・上場準備を見据えた評価・報酬制度の再設計および全社展開に対する責任</li><li>採用戦略全体の設計・運用および採用チームのマネジメント</li><li>MISSION・VALUEを軸とした組織文化の設計および浸透施策の統括</li></ul><p>※働き方について<br>全社としてはフルリモートを導入していますが、本ポジションについては、経営陣との対面での意思決定・コミュニケーションを重視するため、＜一定頻度での出社が可能な方＞を対象としています。</p><p><strong>【ポジションの魅力】</strong></p><ul><li>AI×教育を軸に多事業を展開する環境で、事業ステージの異なる組織課題に向き合い、人事として総合的な解決経験を積める</li><li>経営陣直下で、採用・労務・制度設計を横断し、仕組みづくりとカルチャーづくりの両面から経営に貢献できる</li><li>創業3年目のため、発展途上の領域が多く、評価制度・教育制度・エンゲージメント施策などを自ら設計し、改善まで主導できる</li><li>&quot;日本をAI先進国に&quot;というミッションを、人材戦略・組織づくりの側面から支えられる環境</li></ul><p><strong>【応募資格】</strong></p><p><span class='tag tag-must'>MUST</span> 必要な経験/スキル</p><ul><li>事業会社において、人事責任者またはそれに準ずる立場で人事領域を統括した経験(5年以上)</li><li>メンバーマネジメント経験(5名以上)</li><li>採用・労務・制度設計・組織開発のいずれか一部ではなく、複数領域を横断して全体設計・意思決定を行った経験</li><li>経営・事業責任者と並走し、人事戦略・人員計画・人件費／採用予算を意思決定レイヤーで担った経験</li><li>不確実性の高い環境(成長フェーズ・変化の激しい組織)において、論点整理から意思決定、実行までをリードしてきた経験</li></ul><p><span class='tag tag-want'>WANT</span> 望ましい経験/スキル</p><ul><li>100名規模以上、または急成長フェーズ(スタートアップ等)での人事責任経験</li><li>上場準備・ガバナンス強化フェーズにおける人事制度／体制整備経験</li><li>採用難易度の高いポジション(専門職・マネジメント層)の採用責任経験</li><li>CHRO・CxOレイヤーと密に連携し、組織・人材に関する意思決定を行ってきた経験</li><li>人事部門の立ち上げ、または大きな変革(制度刷新・体制再編)を主導した経験</li></ul><p><strong>【求める人物像】</strong></p><ul><li>事業成長と連動した人事戦略を描き、実行までやり切れる方</li><li>採用・労務・制度設計を横断し、全体視点で人事をリードできる方</li><li>経営陣と近い距離で議論し、事業課題を人事施策に落とし込める方</li><li>現場に入り込みながら、仕組みづくりと改善を推進できる方</li><li>急成長フェーズの変化を前向きに楽しめる方</li></ul><p><strong>■ 私たちが大切にしている7つのバリュー</strong></p><ol><li>SHIFT：現状維持に満足せず、より良い未来のために自ら変化を創出する</li><li>w/AI：AIを含む最新テクノロジーを積極的に活用し、業務効率化や意思決定の精度を高める</li><li>Impact driven：目の前のタスクの背後にある目的や根本課題を見抜き、最も重要なことに集中する</li><li>Ownership / Autonomy：自分の業務やプロジェクトを&quot;自分ごと&quot;として捉え、最後まで責任を持ってやり遂げる</li><li>Wholeness：率先して課題に取り組み、すべての人・社会のために行動する</li><li>Integrity：常に正直で真摯な態度で物事に取り組み、高い倫理観と透明性をもって信頼関係を築く</li><li>Gratefulness：現状の成果は周囲の支えがあってこそと理解し、感謝を行動や言葉で表現する</li></ol>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 フルリモート可</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://shift-ai.co.jp/company/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/shiftai/shift-ai-hui-she-shao-jie-zi-liao" target="_blank">📊 会社紹介資料</a><a class="lbtn lbtn-out" href="https://www.wantedly.com/companies/company_4213926/stories" target="_blank">👥 Wantedly</a></div>
+</div></div>
+
+<div class="card" id="caddi"><div class="card-inner">
+  <div class="badges"><span class="badge">ジャパンCHRO(候補)</span><span class="badge badge-blue">未上場(N-4以前)</span></div>
+  <div class="co-name">キャディ株式会社</div>
+  <div class="co-url"><a href="https://caddi-inc.com/" target="_blank">https://caddi-inc.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>東京都台東区浅草橋4-2-2 D'sVARIE浅草橋ビル(総合受付6階)</td></tr><tr><th>設立</th><td>2017年11月</td></tr><tr><th>上場区分</th><td>未上場(N-4以前)</td></tr><tr><th>累計資金調達額</th><td>257.3億円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>IPO準備中</strong>：大型IPOに向けた戦略的投資を進めています</li><li><strong>競合のいないプロダクト</strong>：&quot;類似図面検索&quot;のプロダクトはグローバルでも競合がおらず、テクノロジーの難易度が高い状況です</li><li><strong>急成長企業</strong>：昨ウオーター対比7倍の成長率で、3ヵ月毎に会社が生まれ変わっているような状況です</li><li><strong>グローバル展開</strong>：日本発のバーティカルSaaSスタートアップでグローバル展開している、稀有な企業です</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「モノづくり産業のポテンシャルを解放する」をミッションに、製造業のデジタル変革を推進。製造業AIデータプラットフォームとして、スズキ、SUBARU、パナソニック、日立製作所など日本を代表する多くの大規模メーカーが導入。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2017年11月創業、&quot;モノづくり産業のポテンシャルを解放する&quot;をミッションに、製造業のデジタル変革を推進しています。2018年より製造業の受発注プラットフォームCADDi(現CADDi Manufacturig)をスタート、品質・コスト・納品(QCD)に責任を負い一気通貫の調達支援を提供。そこから得た知見を元に、2022年6月には図面データ活用クラウドCADDi Drawerをリリースし、製造業における重要データの資産化を支援しています。2022年よりグローバル展開も開始し、ベトナム・タイ・アメリカを含む世界４カ国で現在事業を展開しています。</p><p>CADDi Drawerは、現在、スズキ、SUBARU、ミネベアミツミ、NSKをはじめとする日本を代表する自動車メーカー・自動車部品メーカー、パナソニックや日立製作所、富士電機といった総合電機メーカー、川崎重工業、住友重機械工業、IHIといった重工業メーカー、ヤンマー、日立建機といった建設機械会社、東京エレクトロン、荏原製作所といった機械メーカーなどなど、日本を代表する多くの大規模メーカーが導入しています。</p><p>2024年7月より、祖業である部品調達支援事業(CADDi Manufacturing)とデータプラットフォーム事業(CADDi Drawer)の2つの事業を統合することを発表。製造業のエンジニアリングチェーン・サプライチェーン上のあらゆるデータを解析・関連付け、インサイトを抽出することで、人間の生産活動をより高度化する「製造業AIデータプラットフォームCADDi」として新たに提供をスタートしました。</p><p><strong>代表取締役社長　加藤 勇志郎氏</strong><br>1991年生まれ。東京大学卒業後、外資系コンサルティング会社のマッキンゼー・アンド・カンパニーに入社。2016年に同社マネージャーとして、日本・中国・アメリカ・オランダなどグローバルで、製造業メーカーを多方面から支援するプロジェクトをリード。特に、重工業、大型輸送機器、建設機械、医療機器、消費財を始めとする大手メーカーに対して購買・調達改革をサポートした他、IoT/Industry4.0領域を立ち上げ時から牽引。製造業分野の持つポテンシャルに惹かれ、2017年11月にキャディ株式会社を創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 ジャパンCHRO(候補)</div>
+          <div class="job-preview">日本における人事戦略の最高責任者として、採用・育成・評価・組織設計・カルチャーづくりまでを一気通貫で担う役割</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【ポジション概要】</strong></p><p>現在のCHROは、グローバル全体を見据えた戦略設計と、日本を含む各リージョンのオペレーション双方を兼務しています。今後の事業成長および組織拡大を見据え、日本における人事機能を戦略・実行の両面で丸ごと任せられる責任者を置くことが不可欠なフェーズに入っています。</p><p>そのため、現CHROは&quot;グローバルCHRO&quot;へ役割をシフトし、日本組織を統括する&quot;ジャパンCHRO&quot;ポジションを新設し、募集をしています。</p><p>本ポジションは、日本における人事戦略の最高責任者として、採用・育成・評価・組織設計・カルチャーづくりまでを一気通貫で担いながら、グローバル本社の方針・基準と整合した形で、日本独自の最適解を構築していただく役割です。</p><p><strong>【求める人物像】</strong></p><ul><li>キャディのミッション、ビジョン、カルチャーに強く共感いただける方</li><li>社会課題解決への意欲がある方</li><li>仮説構築力、抽象化思考力に長けた方</li><li>素早く検証するフットワークがある方</li></ul><p>キャディでは、大胆・卓越・一丸・至誠という4つの価値観を体現できる人を求めています。応募要件の経験に完全には一致しない場合でも、こういった能力や経験が活かせるんじゃないか、と思われる方は是非ご応募ください。課題に真正面から向き合い、徹底的に考え抜き、チームで一丸となって課題解決に取り組む。そんな組織を当事者として一緒に作っていきたいという方を歓迎します。</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://caddi-inc.com/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://speakerdeck.com/caddi_eng/caddi-recruit-202108" target="_blank">📊 会社説明資料</a><a class="lbtn lbtn-out" href="https://www.youtube.com/watch?v=t_kPudq7UW8" target="_blank">🎬 CADDi Drawer Brand Movie</a><a class="lbtn lbtn-out" href="https://caddi.com/careers/" target="_blank">💼 採用サイト</a></div>
+</div></div>
+
+<div class="card" id="ubie"><div class="card-inner">
+  <div class="badges"><span class="badge">CHRO候補【アクセラレーター本部】</span><span class="badge badge-blue">未上場</span></div>
+  <div class="co-name">Ubie株式会社</div>
+  <div class="co-url"><a href="https://ubie.life/" target="_blank">https://ubie.life/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒103-0023 東京都中央区日本橋本町三丁目8番4号 日本橋ライフサイエンスビルディング4 5F</td></tr><tr><th>設立</th><td>2017年5月</td></tr><tr><th>上場区分</th><td>未上場</td></tr><tr><th>累計資金調達額</th><td>180億円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>IPO準備中</strong>：累計資金調達額180億円を突破し、Googleからの出資参画も実現</li><li><strong>業界No.1実績</strong>：生成AIサービスとして業界でいち早く提供開始、既に100病院以上に導入</li><li><strong>働き方の自由度</strong>：男性の育休取得率も高く、性差なく保育園お迎えの中抜けなどOK</li><li><strong>ストックオプション制度</strong>：全社員が付与対象(退職後もストックオプションを保有可)</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「テクノロジーで人々を適切な医療に案内する」をミッションに掲げ、医師とエンジニアが2017年5月に創業したヘルステックスタートアップ。月間1200万人に利用される生活者向けサービスと、全国1800件超で使われる医療機関向けサービスを提供。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>&quot;テクノロジーで人々を適切な医療に案内する&quot;をミッションに掲げ、医師とエンジニアが2017年5月に創業したヘルステックスタートアップです。現在は、月間1200万人に利用される生活者向けサービスの症状検索エンジンと、全国1800件超で使われる医療機関向けサービス、得られるデータを活用した製薬企業向けのコンサルティング事業という3領域でサービス提供しており、2022年より米国事業も展開を開始しています。</p><p>ユビー生成AIはUbieの中でも事業を大きくスケールさせる重点サービスに位置づけており、病院に対する生成AIサービスとして業界でいち早く提供を開始しています。既に100病院以上に導入され、大学病院など大規模病院も含めて導入実績はNo.1です。</p><p>2025年5月には、累計資金調達額180億円を突破と発表。これまでに発表いたしましたGoogleからの出資参画(2024年10月発表)をはじめ、日本郵政キャピタル株式会社、株式会社NTTドコモ、株式会社セブン-イレブン・ジャパン等の国内外のリーディングカンパニー、ならびに日本政策金融公庫、株式会社商工組合中央金庫等からの支援によります。</p><p><strong>共同代表 久保 恒太氏(エンジニア)</strong><br>東大大学院在学中に医師の思考シミュレーションサービスの開発を始め、高校時代からの同級生で当時東大医学部生だった阿部氏に協力を依頼。ステルスで今のDr.Ubieの原型となる病気予測プログラムを2013年から開発し始める。</p><p><strong>共同代表　阿部 吉倫氏(医師)</strong><br>久保氏に医師の思考シミュレーションの研究を持ちかけられた事を機にデータサイエンスにのめり込み、Ubie疾患予測エンジン及び質問選定アルゴリズムを開発。卒後は東大病院、健康長寿医療センターで最先端医療と高齢者医療の最前線を経験する中で、社会はどんどん便利になっているのに、医療現場は昔と変わらず、医療従事者の頑張りでなんとか成り立っていることにもやっとする。2017年5月にUbie株式会社を共同創業。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CHRO候補【アクセラレーター本部】</div>
+          <div class="job-preview">事業成長を加速させる、人・組織戦略の要として、生成AI時代における組織OSのアップデート設計・推進を担う</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■職務概要</strong></p><p>事業成長を加速させる、人・組織戦略の要。</p><p>Ubie株式会社は、&quot;世界80億人の健康寿命を延ばす挑戦&quot;をビジョンに、医療という複雑な領域において、テクノロジーを用いた様々な事業を展開し、急成長を遂げている企業です。月間3,000万人の利用者を目指し、107.77万年の健康寿命の延伸を目標としています。</p><p>今後は国内事業を更なる拡大に加えて、2024年より本格的に稼働し始めたアメリカ事業、更に数年後にはアメリカ以外の国々へのグローバル展開を検討しており、その実現のためには組織基盤を整えることが非常に重要だと考えております。</p><p>また、生成AIの登場により、今まで解けなかった幅広い課題が解決できる可能性があり、プロダクト活用や社内生産性向上に大きな可能性があります。Ubieでは2023年初めから、生成AIのプロダクト活用と生産性向上の観点で、生成AIの活用を探求してきました。医療機関向けのプロダクトに、問診を生成AIで要約する機能を搭載し、数百を超える医療機関に実際にご利用頂いています。また、社内生産性向上では、データ分析の効率化やプログラミングの支援の観点で、作業効率が数倍になるような取り組みがされています。</p><p>そこでCHROとして以下の役割を推進してくださる方を募集しております。</p><p><strong>■想定される主な業務</strong></p><p><strong>経営戦略・事業戦略と組織・人事戦略の接合</strong><br>中長期経営戦略・事業戦略の議論に入っていただき、それらを達成するための組織・人事戦略の策定ならびに、戦術への落とし込みを行っていただきます。</p><p><strong>生成AI時代における組織OSのアップデート設計・推進</strong><br>生成AIの活用拡大に伴い、働き方、意思決定プロセス、情報流通、コラボレーションの仕組みなど、組織の根幹をなすオペレーティングシステムを時代に即した形にアップデートする戦略の設計と推進を担っていただきます。生成AIと人間の協働により最大の成果を生み出せる組織構造・業務プロセスの再設計を行っていただきます。</p><p><strong>人事評価制度・福利厚生系制度の施策立案・推進</strong><br>2026年より生成AIを活用した革新的な評価制度を導入します。日々の活動データを生成AIで分析し、透明性と公平性を担保した評価の仕組みを設計・推進していただきます。評価制度の導入・運用を通じて、事業推進を加速させる組織づくりを実現していただきます。必要に応じて部署単位や職種単位での評価制度のカスタマイズなど、組織が最も成果を残しやすい制度を常に施策検討・立案・推進していただきます。</p><p><strong>組織活性のための施策立案・推進</strong><br>前述のカルチャー設計や評価制度設計なども含め、組織を活性化するための施策を立案・推進していただきます。</p><p><strong>HR関連部門のマネジメント</strong><br>アクセラレーター本部の人事機能に加え、各組織HRBPなど、HR関連部門全体のマネジメントをしていただきます。アサイン変更や役割の追加・削減など、事業推進に最も適したHR組織を作っていただきます。</p><p><strong>Global事業の組織設計</strong><br>将来的なGlobal事業拡張を見据えて、どの機能をどの国に置くかといった戦略や、必要に応じて英語公用化施策、LLM技術などを活用した同時翻訳、ローコンテクスト文化への移行などを推進していただきます。</p><p><strong>入社後の動き</strong><br>入社後まずはアクセラレーター本部(全社横断部門)の人事企画や各事業部のHRBP、US支社のHRBPとして活動。その後、アクセラレーター本部のHR Leadなどを経て、CHROポジションへのアサインを想定</p><p><strong>■現状の課題と解決していただきたいこと</strong></p><ul><li>社員数拡大に伴い、今まで以上に経営戦略や事業戦略から組織戦略・人事戦略への落とし込みが複雑化しており、徐々にスピード感が落ちて後手後手に回っている現状がございます。そこで、スピード感を失わずに全社戦略に基づく柔軟な人事戦略の設計を行っていただきたいです。</li><li>企業規模が大きくなると、ひとつのレバーが良くも悪くも大きな影響を与えますが、そのROI判断は経験者でないと難しい部分があり、残念ながら現状のUbieの人事に足りていない部分となっております。そこで大企業での人事経験を元に、各施策の適切なROI判断をお願いしたく思います。</li><li>2022年にアメリカ法人設立を行い、2024年より本格的にアメリカ法人の立ち上げを実施。アメリカ以外にもインド、シンガポールなどにメンバーがおり、日本語を話せないメンバーも徐々に増えてきております。一方で日本からグローバルへの展開を経験した者が社内に少なく、これから発生する課題など未知数な部分もあるため、過去の経験を活かして先手を打ってグローバル展開を推進していただきたいです。</li></ul><p><strong>【応募資格】</strong></p><p><span class='tag tag-must'>MUST</span> 必須スキル</p><ul><li>複数年にわたる年間50名以上の社員数増加を人事責任者(CHRO、役員、部長クラス以上)として経験され、組織成長に伴う課題の発見と解決を自ら担当された方</li><li>IT企業において組織拡大された経験</li><li>評価制度や組織カルチャー等の人事企画を事業成長に合わせて継続的にアップデートした経験</li><li>生成AI等を活用したデータドリブンな人事施策の設計・運用経験</li></ul><p><span class='tag tag-want'>WANT</span> 歓迎スキル</p><ul><li>英語圏(特にアメリカ)での就業経験</li><li>英語を公用語とする外資企業での就業経験</li><li>日本のITメガベンチャーでの就業経験(社員数1,000名以上)</li><li>経営戦略や事業戦略策定に携わった経験</li><li>会社・組織ブランディングの策定に携わった経験</li><li>テクノロジーの進化に伴う組織OSのアップデート経験</li><li>日本企業のグローバル化をリードした経験(英語公用語可など、日本企業にグローバル文化を融合させた経験。外資企業など元々海外に本社を置く企業の日本法人にけるグローバル化は除く)</li></ul><p><strong>【求める人物像】</strong></p><ul><li>UbieのVision, Mission, Identity, Value, カルチャーに対する高い共感</li><li>Ubieの事業・医療業界を深く理解し、各収益事業に必要な組織能力を戦略的に充足出来る人物</li><li>Ubieの組織・カルチャーを深く理解し、柔軟に変化・進化し続けられる人物であり、未来志向で組織を育むことができる人物</li><li>過去の成功体験などに固執することなく、目の前の課題解決のために自ら学ぶ姿勢がある方</li><li>ポジションや肩書に拘らず、自分より優秀な人がいたらCxOポジションを快く譲り、自らはメンバーとしてUbieの事業成長に引き続き貢献できる人</li></ul><p><strong>【変更の範囲】</strong>全ての業務への配置転換の可能性あり</p>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 ハイブリッド勤務</span><span class="pill">✅ 副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://ubie.life/" target="_blank">🏢 企業サイト</a><a class="lbtn lbtn-out" href="https://ubie-coporate.notion.site/Ubie-Corporate-3f43ebe962a944e8a53e1a7434551ead" target="_blank">📊 Corporate紹介</a><a class="lbtn lbtn-out" href="https://www.youtube.com/watch?v=6-fsBNhkKD8" target="_blank">🎬 スタートアップの勝ち方</a></div>
+</div></div>
+
+<div class="card" id="asuene"><div class="card-inner">
+  <div class="badges"><span class="badge">CEO室 - HRマネージャー候補</span><span class="badge badge-blue">未上場(N-1)</span></div>
+  <div class="co-name">アスエネ株式会社</div>
+  <div class="co-url"><a href="https://corp.asuene.com/company" target="_blank">https://corp.asuene.com/company</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒105-0001 東京都港区虎ノ門1-10-5 KDX虎ノ門一丁目ビル WeWork 4階</td></tr><tr><th>設立</th><td>2019年</td></tr><tr><th>従業員数</th><td>正社員280名、業務委託を含め400名超</td></tr><tr><th>上場区分</th><td>未上場(N-1)</td></tr><tr><th>累計資金調達額</th><td>115億円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>IPO準備中</strong>：IPOできる体制は整えていますが、大型IPOを狙い市況を見ながら上場タイミングを見計らっています</li><li><strong>圧倒的な成長資金と財務基盤</strong>：累計資金調達額は115億円に上り、米国展開を加速させています</li><li><strong>市場No.1の実績</strong>：主力サービス「ASUENE」は3年連続導入社数No.1、「ASUENE SUPPLY CHAIN」も2年連続No.1を獲得</li><li><strong>グローバル展開</strong>：現在、日本を含めて6カ国(東京、シンガポール、ロサンゼルス、ロンドン、バンコク、セブ)に現地拠点を持ち事業拡大中</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">「次世代によりよい世界を」をミッションに2019年に創業した、気候変動問題解決に取り組むクライメートテック企業。CO2排出量見える化・削減・報告クラウドサービス「ASUENE」など脱炭素・ESG領域のマルチプロダクトを提供。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>&quot;次世代によりよい世界を&quot;をミッションに2019年に創業した、気候変動問題解決に取り組むクライメートテック企業です。</p><p>CO2排出量見える化・削減・報告クラウドサービス「ASUENE」、サプライチェーンマネジメントクラウドサービス「ASUENE SUPPLY CHAIN」、GX・ESG人材特化型転職プラットフォーム「ASUENE CAREER」、非財務データの第三者保証事業「ASUENE VERITAS」、カーボンクレジット取引所「Carbon EX」など脱炭素・ESG領域のマルチプロダクトを提供し、企業のサステナビリティ経営をワンストップで支援しています。</p><p>実績は圧倒的で、「ASUENE」は導入社数3年連続No.1、ESG評価クラウドも2年連続No.1を獲得しており、累計資金調達額は115億円に達しています。また、三井住友銀行の事業を買収・統合するなどこれまでに6社のM&Aを実施し、成長戦略の中核としています。現在は日本・米国・シンガポール・ロンドンなど世界6ヶ国に拠点を持ち、グローバル展開を加速させています。</p><p>米誌の&quot;2025 World's Top GreenTech Companies&quot;に、日本のCO2排出量見える化クラウド企業で唯一選出されるなど、世界的な評価も高い成長企業です。</p><p><strong>Founder 代表取締役CEO　西和田 浩平 氏</strong><br>慶應義塾大学卒業、三井物産にて日本・欧州・中南米の再生可能エネルギーの新規事業投資・M&Aを担当。ブラジル海外赴任中に分散型電源企業に出向、海外のM&A・PMI・事業投資・新規事業などを経験。Forbes Japan Rising Star Award受賞、Forbes Japan 100選出など多数のアワードを受賞。2025年12月に初の著書&quot;『世界で勝てるGX』脱炭素資本主義が動かす、再エネ×AI主導の21世紀の産業革命&quot;を出版</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 CEO室 - HRマネージャー候補</div>
+          <div class="job-preview">採用戦略の上流設計から戦術のリード、組織開発や人事企画などのHR領域をリードする人事マネージャー</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>■募集背景</strong></p><p>当社は脱炭素経営を支援するSaaS事業をはじめ、世界の気候変動問題解決に向け取り組んでいるスタートアップ企業として急成長を続けております。</p><p>組織規模の拡大と事業の多角化に伴い、経営と連動した組織/採用戦略の構築と実行がますます重要になっています。今回、採用戦略の上流設計から戦術のリード、ゆくゆくは組織開発や人事企画などのHR領域リードできる人事マネージャーを新たに募集します。</p><p><strong>■ポジション概要</strong></p><p>本ポジションは、採用領域をはじめ、組織戦略全体を見据えたHRマネージャー候補として以下のミッションを担っていただきます。経営陣と同じ視点で&quot;どんな組織をつくるべきか&quot;&quot;誰を迎えるべきか&quot;を共に考え事業のレバレッジに変えていく、極めて重要なポジションです。</p><p>&quot;経営と並走し、採用をはじめとしたHRを武器として会社の未来を変える&quot;</p><p>そんな挑戦に共鳴していただける方をお待ちしています。</p><p><strong>■主な業務内容</strong></p><ul><li>経営・組織戦略に基づく中長期・短期の人事・採用戦略の策定と実行(アスエネ本社/グループ会社の経営層・現場責任者と連携)</li><li>採用戦略をKPIベースで設計・分析・レポートし、成果にコミットする体制の構築</li><li>採用広報、選考プロセス設計、エージェントマネジメントなどの戦術リード</li><li>経営陣・人事ゼネラルマネージャーと連携した組織課題の特定と改善施策の実行</li><li>配下メンバー(5名以上想定)のマネジメント・育成</li></ul><p>※まずは採用領域の推進を中心に担っていただきますが、状況に応じて人事制度や組織開発など領域を広げていただく想定です。</p><p><strong>【応募資格】</strong></p><p><span class='tag tag-must'>MUST</span> 必須スキル</p><ul><li>採用・組織開発・人事企画など、HR領域における実務経験5年以上</li><li>難易度の高い採用ポジション(CxO、EM、BizDev等)を自走して担った経験</li><li>採用戦略・制度設計など、定量的分析を基に上流設計に携わった経験</li><li>事業部や経営陣と連携しながら、組織課題の特定と打ち手の企画・実行をリードした経験</li><li>5名以上のチームマネジメント経験</li></ul><p><span class='tag tag-want'>WANT</span> 歓迎要件</p><ul><li>自社の採用広報・ブランディング施策をリードした経験</li><li>複数事業部でのHRBPのご経験</li><li>データドリブンな採用KPI設計・改善に強みがある方</li></ul><p><strong>【求める人物像】</strong></p><ul><li>採用をはじめHR領域を&quot;事業成長のレバレッジ&quot;と捉え、経営視点で動ける方</li><li>定量・定性の両面から課題を捉え、自ら戦略を立案し、推進できる方</li><li>採用難易度の高い領域に、仮説検証しながら楽しんで取り組める方</li><li>ストレッチな採用目標にも、粘り強く主体的に挑戦できる方</li><li>経営や現場の温度感を理解し、動ける柔軟性のある方</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">✅ 条件によって副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.asuene.com/company" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+
+<div class="card" id="hupro"><div class="card-inner">
+  <div class="badges"><span class="badge">人事部長(執行役員候補)</span><span class="badge badge-blue">未上場(N-1)</span></div>
+  <div class="co-name">株式会社ヒュープロ</div>
+  <div class="co-url"><a href="https://corp.hupro-job.com/" target="_blank">https://corp.hupro-job.com/</a></div>
+  <div class="overview">
+    <h3>Corporate Overview</h3>
+    <table><tr><th>本社住所</th><td>〒150-0043 東京都渋谷区道玄坂2-16-4 野村不動産渋谷道玄坂ビル 4階/6階</td></tr><tr><th>設立</th><td>2015年11月</td></tr><tr><th>従業員数</th><td>社員数は1年で50名から130名、直近3年で400名予定</td></tr><tr><th>上場区分</th><td>未上場(N-1)</td></tr><tr><th>累計資金調達額</th><td>約7億円</td></tr></table>
+  </div>
+  <div class="highlight">
+    <h3>⭐ morichオススメPoint</h3>
+    <ul><li><strong>IPO準備フェーズ(N-1期)</strong>：今後の資金調達はおこなわず、IPOを進める予定です</li><li><strong>業界No.1の実績</strong>：求人掲載1万件、累計登録者数6万人を誇り、税理士・監査法人の掲載求人数は国内トップです</li><li><strong>専門性の高い市場での強み</strong>：アクティブユーザーの25％は同社のみで転職活動している状況で、専門人材を囲い込めています</li><li><strong>若手経営者</strong>：山本社長が大学4年時に設立し10年を迎える同社、お若いながらもやり手で明るくポジティブな経営者です</li></ul>
+  </div>
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <div class="acc-header-left">
+        <span class="label">企業紹介</span>
+        <div class="acc-preview">2015年11月設立。士業・管理部門領域に特化したキャリア支援プラットフォームを展開し、転職支援サービス『最速転職 HUPRO(ヒュープロ)』および、士業・管理部門向けのキャリア／実務情報を発信する『HUPRO MAGAZINE』を運営。</div>
+      </div>
+      <div class="acc-icon">▼</div>
+    </div>
+    <div class="acc-body"><p>2015年11月設立。士業・管理部門領域に特化したキャリア支援プラットフォームを展開し、転職支援サービス『最速転職 HUPRO(ヒュープロ)』および、士業・管理部門向けのキャリア／実務情報を発信する『HUPRO MAGAZINE』を運営しています。</p><p>『最速転職 HUPRO』は、求職者の経験に応じた求人提案、面接アポイントの調整、キャリア相談・条件交渉を専任アドバイザーが支援するモデルを掲げ、スピーディーな転職体験を特徴としています。</p><p>累計4万人以上のユーザーと5,500社以上の企業が利用、同社発表の調査リリース(2023年)では、&quot;税理士・会計業界専門求人サイト 公開求人数No.1&quot;を獲得しています。</p><p>業界の特性上、現役で仕事をしているユーザーはかなり忙しいこと、また求人を掲載する企業も急を要している場合が多いことから、従来は非常に閉鎖的な求人・転職環境でした。ヒュープロはそんな士業・管理部門の転職・求人市場をオープンにし、スキルベースでマッチングすることによって、スピーディーなマッチングを目標にサポートしています。</p><p>2022年11月には、シリーズBにてサイバーエージェントにおける若手経営者の応援を目的とした投資活動、通称&quot;藤田ファンド&quot;から3億円の資金調達を実施し、累積資金調達総額は約7億円となっています。</p><p><strong>代表取締役　山本玲奈氏</strong><br>1993年兵庫県生まれ。幼少期からインドネシアやアメリカ等、18年間を海外で過ごす。慶應義塾大学法学部への入学と共に日本へ帰国。大学3年時に司法試験の受験勉強をしながら、ビジネスコンテストへ出場。優勝した経験をきっかけに大学在学中である2015年11月、株式会社ヒュープロを創業し、代表取締役へ就任。&quot;Forbes 30 Under 30 Asia 2022&quot;&quot;EY Winning Women 2021ファイナリスト&quot;等にも選出されています。</p></div>
+  </div>
+  
+    <div class="job-wrap">
+      <div class="job-header" onclick="toggleJob(this)">
+        <div>
+          <div class="job-title-text">📋 人事部長(執行役員候補)</div>
+          <div class="job-preview">山本代表が担ってきた人事部長としての役割を引き継ぎ、特に戦略人事の領域で組織を牽引するポジション</div>
+        </div>
+        <div class="job-icon">▼</div>
+      </div>
+      <div class="job-body">
+        <p><strong>【ポジション概要】</strong></p><p>現在、山本代表が実質的に人事部長の役割を兼任されており、山本代表が担ってきた人事部長としての役割を引き継ぎ、特に戦略人事の領域で組織を牽引することがミッションです。人事チームは現在2名で構成されています。</p><p><strong>■業務内容</strong></p><ul><li>採用と戦略人事の二つの主要な業務を統括(戦略人事の領域に注力していただくことが期待されています)</li><li>急拡大期における給与テーブルや評価制度の変革</li></ul><p><strong>■ポジションの魅力</strong></p><p><strong>急成長企業での人事経験</strong><br>社員数は1年で50名から130名、直近3年で400名にする予定。新卒・中途(営業、エンジニア、他専門職)から戦略人事(制度設計、給与テーブル、HRBP、育成)まで大きな裁量で組織を作っていただけます</p><p><strong>【応募資格】</strong></p><p><span class='tag tag-must'>MUST</span> 必須要件</p><ul><li>戦略人事の経験(特に給与テーブルや評価制度の変革に関わった経験がある方)</li></ul><p><span class='tag tag-want'>WANT</span> 歓迎要件</p><ul><li>人材系企業での人事経験</li></ul>
+        <div class="meta-pills"><span class="pill">📍 東京</span><span class="pill">🏠 基本出社</span><span class="pill">✅ 条件によって副業可</span></div>
+      </div>
+    </div>
+  <div class="section-label">外部リンク</div>
+  <div class="links"><a class="lbtn" href="https://corp.hupro-job.com/" target="_blank">🏢 企業サイト</a></div>
+</div></div>
+</main>
+<footer>
+  <p>本資料はmorichが青山敬次郎 様のためにご用意した個人情報を含む機密資料です。無断転用・転載はご遠慮ください。</p>
+  <p style="margin-top:6px;">© 株式会社morich</p>
+</footer>
+<script>
+  function toggleAcc(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+  function toggleJob(header) {
+    const body = header.nextElementSibling;
+    header.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
